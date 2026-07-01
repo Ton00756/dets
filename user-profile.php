@@ -9,11 +9,27 @@ if (strlen($_SESSION['detsuid']==0)) {
   {
     $userid=$_SESSION['detsuid'];
     $fullname=$_POST['fullname'];
-  $mobno=$_POST['contactnumber'];
+    $mobno=$_POST['contactnumber'];
 
-     $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno' where ID='$userid'");
+    if(!empty($_FILES['profilepic']['name'])){
+      $allowed = array('jpg','jpeg','png','gif','bmp','webp');
+      $ext = strtolower(pathinfo($_FILES['profilepic']['name'], PATHINFO_EXTENSION));
+      if(in_array($ext, $allowed)){
+        $profilepic = md5($_FILES['profilepic']['name'].time()).'.'.$ext;
+        move_uploaded_file($_FILES['profilepic']['tmp_name'],"assets/images/users/".$profilepic);
+        $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno', ProfilePic='$profilepic' where ID='$userid'");
+      } else {
+        $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno' where ID='$userid'");
+      }
+    } else {
+      $query=mysqli_query($con, "update tbluser set FullName ='$fullname', MobileNumber='$mobno' where ID='$userid'");
+    }
+
     if ($query) {
     $msg="User profile has been updated.";
+    if(isset($profilepic) && file_exists("assets/images/users/".$profilepic)){
+      $_SESSION['detsuprofilepic'] = $profilepic;
+    }
   }
   else
     {
