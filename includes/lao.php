@@ -1,6 +1,6 @@
 <?php
 $lang = array(
-    'dashboard' => 'ໜ້າຫຼັງ',
+    'dashboard' => 'ໜ້າຫຼັກ',
     'expenses' => 'ລາຍຈ່າຍ',
     'expense_report' => 'ລາຍງານລາຍຈ່າຍ',
     'profile' => 'ຂໍ້ມູນສ່ວນຕົວ',
