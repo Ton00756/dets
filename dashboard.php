@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+include('includes/lao.php');
 if (strlen($_SESSION['detsuid']==0)) {
   header('location:logout.php');
   } else{
@@ -38,13 +39,13 @@ if (strlen($_SESSION['detsuid']==0)) {
 				<li><a href="#">
 					<em class="fa fa-home"></em>
 				</a></li>
-				<li class="active">Dashboard</li>
+				<li class="active"><?php echo $lang['dashboard']; ?></li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Dashboard</h1>
+				<h1 class="page-header"><?php echo $lang['dashboard']; ?></h1>
 			</div>
 		</div><!--/.row-->
 		
@@ -65,7 +66,7 @@ $result=mysqli_fetch_array($query);
 $sum_today_expense=$result['todaysexpense'];
  ?> 
 
-						<h4>Today's Expense</h4>
+						<h4><?php echo $lang['today_expense']; ?></h4>
 						<div class="easypiechart" id="easypiechart-blue" data-percent="<?php echo $sum_today_expense;?>" ><span class="percent"><?php if($sum_today_expense==""){
 echo "0";
 } else {
@@ -87,7 +88,7 @@ $result1=mysqli_fetch_array($query1);
 $sum_yesterday_expense=$result1['yesterdayexpense'];
  ?> 
 					<div class="panel-body easypiechart-panel">
-						<h4>Yesterday's Expense</h4>
+						<h4><?php echo $lang['yesterday_expense']; ?></h4>
 						<div class="easypiechart" id="easypiechart-orange" data-percent="<?php echo $sum_yesterday_expense;?>" ><span class="percent"><?php if($sum_yesterday_expense==""){
 echo "0";
 } else {
@@ -110,7 +111,7 @@ $result2=mysqli_fetch_array($query2);
 $sum_weekly_expense=$result2['weeklyexpense'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Last 7day's Expense</h4>
+						<h4><?php echo $lang['last_7days_expense']; ?></h4>
 						<div class="easypiechart" id="easypiechart-teal" data-percent="<?php echo $sum_weekly_expense;?>"><span class="percent"><?php if($sum_weekly_expense==""){
 echo "0";
 } else {
@@ -133,7 +134,7 @@ $result3=mysqli_fetch_array($query3);
 $sum_monthly_expense=$result3['monthlyexpense'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Last 30day's Expenses</h4>
+						<h4><?php echo $lang['last_30days_expense']; ?></h4>
 						<div class="easypiechart" id="easypiechart-red" data-percent="<?php echo $sum_monthly_expense;?>" ><span class="percent"><?php if($sum_monthly_expense==""){
 echo "0";
 } else {
@@ -158,7 +159,7 @@ $result4=mysqli_fetch_array($query4);
 $sum_yearly_expense=$result4['yearlyexpense'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Current Year Expenses</h4>
+						<h4><?php echo $lang['current_year_expenses']; ?></h4>
 						<div class="easypiechart" id="easypiechart-red" data-percent="<?php echo $sum_yearly_expense;?>" ><span class="percent"><?php if($sum_yearly_expense==""){
 echo "0";
 } else {
@@ -184,7 +185,7 @@ $result5=mysqli_fetch_array($query5);
 $sum_total_expense=$result5['totalexpense'];
  ?>
 					<div class="panel-body easypiechart-panel">
-						<h4>Total Expenses</h4>
+						<h4><?php echo $lang['total_expenses']; ?></h4>
 						<div class="easypiechart" id="easypiechart-red" data-percent="<?php echo $sum_total_expense;?>" ><span class="percent"><?php if($sum_total_expense==""){
 echo "0";
 } else {

@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+include('includes/lao.php');
 ?>
 
 <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
@@ -11,7 +12,7 @@ include('includes/dbconnection.php');
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span></button>
-                <a class="navbar-brand" href="dashboard.php"><span>Daily Expenses Management System</span></a>
+                <a class="navbar-brand" href="dashboard.php"><span><?php echo $lang['system_title']; ?></span></a>
                 
             </div>
             

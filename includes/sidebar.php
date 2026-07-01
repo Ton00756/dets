@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/dbconnection.php');
+include('includes/lao.php');
 ?>
 
 
@@ -19,19 +20,19 @@ $name=$row['FullName'];
 
 ?>
                 <div class="profile-usertitle-name"><?php echo $name; ?></div>
-                <div class="profile-usertitle-status"><span class="indicator label-success"></span>Online</div>
+                <div class="profile-usertitle-status"><span class="indicator label-success"></span><?php echo $lang['online']; ?></div>
             </div>
             <div class="clear"></div>
         </div>
         <div class="divider"></div>
         
         <ul class="nav menu">
-            <li class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> Dashboard</a></li>
+            <li class="active"><a href="dashboard.php"><em class="fa fa-dashboard">&nbsp;</em> <?php echo $lang['dashboard']; ?></a></li>
             
             
            
             <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
-                <em class="fa fa-navicon">&nbsp;</em>Expenses <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em><?php echo $lang['expenses']; ?> <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-1">
                     <li><a class="" href="add-expense.php">
@@ -46,7 +47,7 @@ $name=$row['FullName'];
             </li>
            
   <li class="parent "><a data-toggle="collapse" href="#sub-item-2">
-                <em class="fa fa-navicon">&nbsp;</em>Expense Report <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
+                <em class="fa fa-navicon">&nbsp;</em><?php echo $lang['expense_report']; ?> <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
                 </a>
                 <ul class="children collapse" id="sub-item-2">
                     <li><a class="" href="expense-datewise-reports.php">
@@ -66,9 +67,9 @@ $name=$row['FullName'];
 
 
             
-            <li><a href="user-profile.php"><em class="fa fa-user">&nbsp;</em> Profile</a></li>
-             <li><a href="change-password.php"><em class="fa fa-clone">&nbsp;</em> Change Password</a></li>
-<li><a href="logout.php"><em class="fa fa-power-off">&nbsp;</em> Logout</a></li>
+<li><a href="user-profile.php"><em class="fa fa-user">&nbsp;</em> <?php echo $lang['profile']; ?></a></li>
+              <li><a href="change-password.php"><em class="fa fa-clone">&nbsp;</em> <?php echo $lang['change_password']; ?></a></li>
+<li><a href="logout.php"><em class="fa fa-power-off">&nbsp;</em> <?php echo $lang['logout']; ?></a></li>
 
         </ul>
 		
