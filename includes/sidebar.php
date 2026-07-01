@@ -9,7 +9,16 @@ include('includes/lao.php');
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
         <div class="profile-sidebar">
             <div class="profile-userpic">
-                <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+                <?php
+$puid=$_SESSION['detsuid'];
+$picret=mysqli_query($con,"select ProfilePic from tbluser where ID='$puid'");
+$picrow=mysqli_fetch_array($picret);
+if(!empty($picrow['ProfilePic']) && file_exists('assets/images/users/'.$picrow['ProfilePic'])){
+	echo '<img src="assets/images/users/'.$picrow['ProfilePic'].'" class="img-responsive" alt="">';
+} else {
+	echo '<img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">';
+}
+?>
             </div>
             <div class="profile-usertitle">
                 <?php
@@ -41,6 +50,10 @@ $name=$row['FullName'];
                     <li><a class="" href="manage-expense.php">
                         <span class="fa fa-arrow-right">&nbsp;</span> Manage Expenses
                     </a></li>
+
+                    <li><a class="" href="manage-category.php">
+    <span class="fa fa-arrow-right">&nbsp;</span> Manage Category
+</a></li>
                     
                 </ul>
 

@@ -91,7 +91,7 @@ $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
 ?>
-							<form role="form" method="post" action="">
+							<form role="form" method="post" action="" enctype="multipart/form-data">
 								<div class="form-group">
 									<label>Full Name</label>
 									<input class="form-control" type="text" value="<?php  echo $row['FullName'];?>" name="fullname" required="true">
@@ -114,6 +114,13 @@ while ($row=mysqli_fetch_array($ret)) {
 									<button type="submit" class="btn btn-primary" name="submit">Update</button>
 								</div>
 								
+								<div class="form-group">
+	<label>Profile Picture</label><br>
+	<?php if(!empty($row['ProfilePic']) && file_exists('assets/images/users/'.$row['ProfilePic'])){ ?>
+	<img src="assets/images/users/<?php echo $row['ProfilePic'];?>" width="80" style="border-radius:50%; margin-bottom:10px;"><br>
+	<?php } ?>
+	<input class="form-control" type="file" name="profilepic" accept="image/*">
+</div>
 								
 								</div>
 								<?php } ?>

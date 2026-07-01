@@ -9,10 +9,11 @@ if (strlen($_SESSION['detsuid']==0)) {
 if(isset($_POST['submit']))
   {
   	$userid=$_SESSION['detsuid'];
-    $dateexpense=$_POST['dateexpense'];
-     $item=$_POST['item'];
-     $costitem=$_POST['costitem'];
-    $query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseItem,ExpenseCost) value('$userid','$dateexpense','$item','$costitem')");
+$dateexpense=$_POST['dateexpense'];
+$item=$_POST['item'];
+$costitem=$_POST['costitem'];
+$categoryid=$_POST['categoryid'];
+$query=mysqli_query($con, "insert into tblexpense(UserId,ExpenseDate,ExpenseItem,CategoryId,ExpenseCost) value('$userid','$dateexpense','$item','$categoryid','$costitem')");
 if($query){
 echo "<script>alert('Expense has been added');</script>";
 echo "<script>window.location.href='manage-expense.php'</script>";
@@ -89,7 +90,21 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 								<div class="form-group has-success">
 									<button type="submit" class="btn btn-primary" name="submit">Add</button>
 								</div>
+								<div class="form-group">
+
+
 								
+	<label>Category</label>
+	<select class="form-control" name="categoryid" required="true">
+		<option value="">-- Select Category --</option>
+		<?php
+		$catret=mysqli_query($con,"select * from tblcategory where UserId='".$_SESSION['detsuid']."'");
+		while ($catrow=mysqli_fetch_array($catret)) {
+		?>
+		<option value="<?php echo $catrow['ID'];?>"><?php echo $catrow['CategoryName'];?></option>
+		<?php } ?>
+	</select>
+</div>
 								
 								</div>
 								

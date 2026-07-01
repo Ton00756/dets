@@ -80,11 +80,22 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
                   <th>Expense Cost</th>
                   <th>Expense Date</th>
                   <th>Action</th>
+
+				  <th>S.NO</th>
+<th>Expense Item</th>
+<th>Category</th>
+<th>Expense Cost</th>
+
+
                 </tr>
               </thead>
               <?php
               $userid=$_SESSION['detsuid'];
-$ret=mysqli_query($con,"select * from tblexpense where UserId='$userid'");
+			  
+
+$ret=mysqli_query($con,"select tblexpense.*, tblcategory.CategoryName from tblexpense LEFT JOIN tblcategory ON tblexpense.CategoryId=tblcategory.ID where tblexpense.UserId='$userid'");
+
+
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -93,6 +104,10 @@ while ($row=mysqli_fetch_array($ret)) {
                 <tr>
                   <td><?php echo $cnt;?></td>
               
+<td><?php  echo $row['ExpenseItem'];?></td>
+<td><?php  echo $row['CategoryName'];?></td>
+<td><?php  echo $row['ExpenseCost'];?></td>
+
                   <td><?php  echo $row['ExpenseItem'];?></td>
                   <td><?php  echo $row['ExpenseCost'];?></td>
                   <td><?php  echo $row['ExpenseDate'];?></td>
